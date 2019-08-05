@@ -36,10 +36,9 @@ def player(player_name):
     player=list(player)
     return render_template('index.html', q=player, header=player_name) 
 
-''' work on this shit positions display 5 positons 
-    and five pages PG SG SF PF C
-@app.route('/positon')
-def position 
-'''
+@app.route('/leaders')
+def leaders():
+    return render_template('leaders.html')
+
 
 
