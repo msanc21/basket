@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{%block content%}
+
+<ul class="list-group">
+    {%for i in teams%}    
+        <li class="list-group-item "><a href="{{ '/teams/%s'%i }}">{{i}}</a></li>
+    {%endfor%}    
+</ul>
+
+{%endblock%}

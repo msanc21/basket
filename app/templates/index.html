@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <head>
+        
+        <title> USA Players </title>
+       <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('.static',filename='bootstrap.min.css') }}">-->
+    </head>
+    <body>
+         
+        <h2 class="text-center"> {{header}} </h2>
+        <div class="container">
+            <table class= "table table-bordered " data-pagination="true">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Age</th>
+                        <th>Pos</th>
+                        <th>G</th>
+                        <th>GS</th>
+                        <th>MP</th>
+                        <th>FG</th>
+                        <th>FGA</th>
+                        <th>3P</th>
+                        <th>3PA</th>
+                        <th>FT</th> 
+                        <th>FTA</th>
+                        <th>OR</th>
+                        <th>DR</th>
+                        <th>AST</th>
+                        <th>STL</th>
+                        <th>BLK</th>
+                        <th>TOV</th>   
+                        <th>PF</th>                     
+                      <!--  <th>Points</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {%for i in q%}
+                       
+                        {% set name = i["name"] %}
+                        <td><a href="{{ '/players/%s'%name }}">{{name}}</a></td>
+                        
+                        {% set team = i["team"] %}
+                        <td><a href="{{ '/teams/%s'%team }}">{{team}}</a></td>
+                        
+                        {% set age = i["age"] %}
+                        <td>{{age}}</td>
+                       
+                        <td>{{i["positions"]}}</td>
+                        <td>{{i["games_played"]}}</td>
+                        <td>{{i["games_started"]}}</td>
+                        <td>{{i["minutes_played"]}}</td>
+                        <td>{{i["made_field_goals"]}}</td>
+                        <td>{{i["attempted_field_goals"]}}</td>
+                        <td>{{i["made_three_point_field_goals"]}}</td>
+                        <td>{{i["attempted_three_point_field_goals"]}}</td>
+                        <td>{{i["made_free_throws"]}}</td>
+                        <td>{{i["attempted_free_throws"]}}</td>
+                        <td>{{i["offensive_rebounds"]}}</td>
+                        <td>{{i["defensive_rebounds"]}}</td>
+                        <td>{{i["assists"]}}</td>
+                        <td>{{i["steals"]}}</td>
+                        <td>{{i["blocks"]}}</td>
+                        <td>{{i["turnovers"]}}</td>
+                        <td>{{i["personal_fouls"]}}</td>
+                       <!-- <td>{{i["points"]}}</td>-->
+                    </tr>
+                        {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+     </body>
+{% endblock %}
