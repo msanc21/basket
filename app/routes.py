@@ -20,7 +20,6 @@ def teams(teamname):
     
     team=mongo.db.NBA18_19.find({"team":teamname })   
     team=list(team)
-    print(len(team))
     return render_template('index.html', q=team, header=teamname) 
    
 @app.route('/teams')
@@ -31,7 +30,6 @@ def team_list():
 
 @app.route('/players/<player_name>')
 def player(player_name):
-    print(player_name)
     player=mongo.db.NBA18_19.find({"name":player_name})   
     player=list(player)
     return render_template('index.html', q=player, header=player_name) 
