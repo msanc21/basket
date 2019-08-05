@@ -2,35 +2,72 @@
 
 {% block content %}
 <h1>2018-2019 Season Leaders</h1>
+{%for i in range(5)%}
 <div class="col-xs-2">
-    <h2 class="sub-header">Subtitle</h2>
+    <h2 class="sub-header">{{headers[i]}}</h2>
       <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th class="col-md-1">Player</th>
                       <th class="col-md-2">Team</th>
-                      <th class="col-md-3">Header</th>
+                      {%if i == 0%}
+                        <th class="col-md-3">AST</th>
+                      {%elif i == 1%}
+                        <th class="col-md-3">3PM</th>
+                      {%elif i == 2%}
+                        <th class="col-md-3">STL</th>
+                      {%elif i == 3%}
+                        <th class="col-md-3">BLK</th>
+                      {%elif i == 4%}
+                        <th class="col-md-3">FTM</th> 
+                      {%endif%}  
+                      
                     </tr>
                   </thead>
                   <tbody>
+                 
+                  {%if i == 0%}
+                    {%set stats = assist%}
+                  {%elif i == 1%}
+                    {%set stats = three%}
+                  {%elif i == 2%}
+                    {%set stats = steals%}
+                  {%elif i == 3%}
+                    {%set stats = blocks%}
+                  {%elif i == 4%}
+                    {%set stats = ft%}  
+                  {%endif%}  
+                    
+                  {%for j in stats%}
                     <tr>
-                      <td class="col-md-1">1,001</td>
-                      <td class="col-md-2">1,001</td>
-                      <td class="col-md-3">1,001</td>
+                      {%set name =j["name"]%}
+                      <td class="col-md-1"><a href="{{ '/players/%s'%name }}">{{name}}</a></td>
+                     
+                      {%set team =j["team"]%}
+                      <td class="col-md-2"><a href="{{ '/teams/%s'%team }}">{{team}}</a></td>
+                      
+                      
+                      
+                      {%if i == 0%}
+                        <td class="col-md-3">{{j["assists"]}}</td>
+                      {%elif i == 1%}
+                        <td class="col-md-3">{{j["made_three_point_field_goals"]}}</td>
+                      {%elif i == 2%}
+                        <td class="col-md-3">{{j["steals"]}}</td>
+                      {%elif i == 3%}
+                        <td class="col-md-3">{{j["blocks"]}}</td>
+                      {%elif i == 4%}
+                        <td class="col-md-3">{{j["made_free_throws"]}}</td>
+                      {%endif%}  
+                      
                     </tr>
-                    <tr>
-                      <td class="col-md-1">1,001</td>
-                      <td class="col-md-2">1,001</td>
-                      <td class="col-md-3">1,001</td>
-                    </tr>
-                     <tr>
-                      <td class="col-md-1">1,001</td>
-                      <td class="col-md-2">1,001</td>
-                      <td class="col-md-3">1,001</td>
-                    </tr>
+                    {%endfor%}
+                  
                   </tbody>
                 </table>
               </div>
-    </div>
+  </div>
+ {%endfor%}
+
 {% endblock %}

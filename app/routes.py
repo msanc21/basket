@@ -38,7 +38,26 @@ def player(player_name):
 
 @app.route('/leaders')
 def leaders():
-    return render_template('leaders.html')
+    assist=mongo.db.NBA18_19.find({"assists":{"$gt":1}}).sort([("assists",-1)])
+    assist=list(assist)
+    
+    three=mongo.db.NBA18_19.find({"made_three_point_field_goals":{"$gt":1}}).sort([("made_three_point_field_goals",-1)])
+    three=list(three)
+    
+    steals=mongo.db.NBA18_19.find({"steals":{"$gt":1}}).sort([("steals",-1)])
+    steals=list(steals)
+
+    blocks=mongo.db.NBA18_19.find({"blocks":{"$gt":1}}).sort([("blocks",-1)])
+    blocks=list(blocks)
+
+    ft=mongo.db.NBA18_19.find({"made_free_throws":{"$gt":1}}).sort([("made_free_throws",-1)])
+    ft=list(ft)
+    
+    headers=["Assists","Made 3 Pointers","Steals","Blocks","Made Free Throws"]
+    
+    #stats = assist[:10] + three[:10] + steals[:10] + blocks[:10]+ ft[:10]
+   
+    return render_template('leaders.html',headers=headers,assist=assist[:10],three=three[:10],steals=steals[:10],blocks=blocks[:10],ft=ft[:10])
 
 
 
